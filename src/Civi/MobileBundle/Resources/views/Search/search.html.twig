@@ -11,41 +11,43 @@
 	<div id="jqm-contactsheader" data-role="header">
         <h3>Search Contacts</h3>
         <a href="#" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
-
 	</div> 
 	
 	<div data-role="content" id="contact-content"> 
     <div class="ui-listview-filter ui-bar-c">
         <input type="search" name="sort_name" id="sort_name" value="" />
     </div>
+    <ul id="contacts" data-role="listview" data-inset="false" data-filter="false">  
     </div>
 </div> 
 
 <script type="text/javascript">
 
 $( function(){
-    
-  $('#sort_name').change (function () {
-    contactSearch ($(this).val());
+  $('#sort_name').change(function () {
+    var value = $(this).val();
+    if ( value.length > 2 ) {
+        contactSearch ( value );
+    } else {
+        $('#contacts').empty();
+    }
   }); 
-   
 });
 
-function contactSearch (q){
+function contactSearch( q ) {
     $.mobile.showPageLoadingMsg( 'Searching' );
-    $().crmAPI ('Contact','get',{'version' :'3', 'sort_name': q, 'return' : 'display_name,phone' }
-          ,{ 
-            ajaxURL: 'http://civicrm/civicrm/ajax/rest/',
+    $().crmAPI ('Contact','get',{'version' :'3', 'sort_name': q, 'return' : 'display_name' }
+            ,{ 
+            ajaxURL: '/civicrm/ajax/rest/',
             success:function (data){
               if (data.count == 0) {
                 cmd = null;
                 $('#contact-content').append($('#add_contact'));
                 $('#contacts').hide();
                 $('#add_contact').show();
-                populateContactForm();
-                $('#save-contact').click(function(){ createContact(); });                              
-              }
-              else {
+                //populateContactForm();
+                $('#save-contact').click(function(){ createContact(); }); 
+              } else {
                 cmd = "refresh";
                 $('#contacts').show();
                 $('#add_contact').hide();
@@ -54,8 +56,8 @@ function contactSearch (q){
               $.each(data.values, function(key, value) {
                 $('#contacts').append('<li role="option" tabindex="-1" data-ajax="false" data-theme="c" id="event-'+value.contact_id+'" ><a href="#contact/'+value.contact_id+'" data-role="contact-'+value.contact_id+'">'+value.display_name+'</a></li>');
               });
-           $.mobile.hidePageLoadingMsg( );
-           $('#contacts').listview(cmd);
+              $.mobile.hidePageLoadingMsg( );
+              $('#contacts').listview(cmd);
           }
    });
 }

@@ -1,0 +1,6 @@
+Civi\MobileBundle\Entity\Contact:
+   properties:
+      firstName:
+          - NotBlank: ~
+      lastName:
+          - NotBlank: ~

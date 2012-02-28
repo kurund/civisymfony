@@ -1,0 +1,23 @@
+# Emacs backup and lock files
+*~
+.#*
+
+# Mac OSX files
+*.swp
+.DS_Store
+\#*\#
+
+# Symfony files
+# Bootstrap
+# app/bootstrap*
+
+# Symfony directories
+# vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+
+# Configuration files
+app/config/parameters.ini
+

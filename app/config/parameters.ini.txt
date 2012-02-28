@@ -1,0 +1,22 @@
+; These parameters can be imported into other config files
+; by enclosing the key with % (like %database_user%)
+; Comments start with ';', as in php.ini
+[parameters]
+    database_driver   = pdo_mysql
+    database_host     = HOSTNAME
+    database_port     =
+    database_name     = DBNAME
+    database_user     = DBUSER
+    database_password = DBPASS
+
+    mailer_transport  = smtp
+    mailer_host       = localhost
+    mailer_user       =
+    mailer_password   =
+
+    locale            = en
+
+    secret            = ThisTokenIsNotSoSecretChangeIt
+
+    ; full path name to your civicrm.settings.php file ending with civicrm.settings.php
+    civicrm_settings_path = PATH_TO_CIVICRM_SETTINGS

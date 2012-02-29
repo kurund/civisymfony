@@ -92,6 +92,10 @@ class ContactController extends Controller
                                 'GetSingle',
                                 array( 'version' => 3,
                                        'id' => $id ) );
+        
+        $templateVars['contact_type'] = $result['contact_type'];
+        $templateVars['display_name'] = $result['display_name'];
+        $templateVars['image_URL'] = $result['image_URL'];
         $templateVars['first_name'] = $result['first_name'];
         $templateVars['last_name' ] = $result['last_name'];
         

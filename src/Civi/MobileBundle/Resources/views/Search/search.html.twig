@@ -1,11 +1,6 @@
 {% extends 'CiviMobileBundle::base.html.twig' %}
 
 {% block content %}
-{#
-<div data-role="page" data-theme="b" > 
-    {{ form_widget(form) }}
-</div>
-#}
 
 <div data-role="page" data-theme="b" id="jqm-contacts"> 
 	<div id="jqm-contactsheader" data-role="header">
@@ -54,7 +49,7 @@ function contactSearch( q ) {
                 $('#contacts').empty();
               }
               $.each(data.values, function(key, value) {
-                $('#contacts').append('<li role="option" tabindex="-1" data-ajax="false" data-theme="c" id="event-'+value.contact_id+'" ><a href="#contact/'+value.contact_id+'" data-role="contact-'+value.contact_id+'">'+value.display_name+'</a></li>');
+                $('#contacts').append('<li role="option" tabindex="-1" data-ajax="false" data-theme="c" id="event-'+value.contact_id+'" ><a href="view/'+value.contact_id+'" data-role="contact-'+value.contact_id+'">'+value.display_name+'</a></li>');
               });
               $.mobile.hidePageLoadingMsg( );
               $('#contacts').listview(cmd);

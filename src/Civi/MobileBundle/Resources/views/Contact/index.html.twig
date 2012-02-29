@@ -1,5 +1,27 @@
 {% extends 'CiviMobileBundle::base.html.twig' %}
 
- {% block content %}
-     Hello {{ last_name }}, {{ first_name }}: {{ id }}!
- {% endblock %}
+
+{% block content %}
+<div data-role="page" data-theme="b" id="jqm-contacts"> 
+	<div id="jqm-contactsheader" data-role="header">
+        <h3>{{display_name}}</h3>
+        <a href="/contact/search" data-ajax="false" data-direction="reverse" data-role="button" data-icon="home" data-iconpos="notext" class="ui-btn-right jqm-home">Home</a>
+	</div> 
+	
+	<div data-role="content" id="contact-content"> 
+    {%if contact_type == 'Individual' %}
+        <div id='contact-info'>
+            <div class="contact-image" style="float='left';">
+                {% if image_URL %}
+                    <img src='{{image_URL}}' width="75" height="100"/>
+                {% endif %}
+            </div>
+            <div class="contact-details" style="float='right';">
+                {{ first_name }} {{ last_name }}
+            </div>
+        </div>
+    {% endif %}
+    </div>
+</div> 
+
+{% endblock %}
